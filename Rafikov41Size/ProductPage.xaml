@@ -6,9 +6,50 @@
       xmlns:local="clr-namespace:Rafikov41Size"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProductPage">
+      Title="ProductPage"
+      FontFamily="Comic Sans MS">
 
     <Grid>
+        <ListView Name="ProductPageView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="450"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image Width="150" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="5">
+                            <Image.Source>
+                                <Binding Path="ProductPhoto">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            Resources/picture.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Text="{Binding ProductName}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ProductDescription}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ProductManufacturer}"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProductCost, StringFormat={}{0} рублей}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="Скидка"/>
+                        <TextBlock Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" FontSize="22" Text="{Binding ProductDiscountAmount, StringFormat={}{0}%}"/>
+                    </Grid>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         
     </Grid>
 </Page>

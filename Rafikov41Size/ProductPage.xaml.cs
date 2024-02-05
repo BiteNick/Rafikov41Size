@@ -23,6 +23,9 @@ namespace Rafikov41Size
         public ProductPage()
         {
             InitializeComponent();
+            var currentDBList = Rafikov41Entities.GetContext().Product.ToList();
+
+            ProductPageView.ItemsSource = currentDBList;
         }
     }
 }

@@ -23,6 +23,25 @@ namespace Rafikov41Size
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new ProductPage());
+            Manager.MainFrame = MainFrame;
+        }
+
+        private void MainFrame_ContentRendered(object sender, EventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                BtnBack.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnBack.Visibility= Visibility.Hidden;
+            }
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.GoBack();
         }
     }
 }

@@ -17,6 +17,9 @@
         </Grid.RowDefinitions>
 
         <Image Source="Resources/logo.png" HorizontalAlignment="Left"/>
-        <Button Content="Назад" HorizontalAlignment="Right"/>
+        <TextBlock Text="ООО 41 размер" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Name="BtnBack" Click="BtnBack_Click" Content="Назад" HorizontalAlignment="Right"/>
+
+        <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
