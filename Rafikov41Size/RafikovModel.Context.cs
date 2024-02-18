@@ -16,7 +16,6 @@ namespace Rafikov41Size
     public partial class Rafikov41Entities : DbContext
     {
         private static Rafikov41Entities _context;
-
         public static Rafikov41Entities GetContext()
         {
             if (_context == null)

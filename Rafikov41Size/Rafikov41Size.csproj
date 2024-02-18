@@ -167,18 +167,6 @@
     <Resource Include="Resources\icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RafikovModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RafikovModel.edmx</DependentUpon>
-      <LastGenOutput>RafikovModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="RafikovModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RafikovModel.edmx</DependentUpon>
-      <LastGenOutput>RafikovModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +181,18 @@
     <Resource Include="images\J384T6.jpg" />
     <Resource Include="images\А112Т4.jpg" />
     <Resource Include="Resources\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RafikovModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RafikovModel.edmx</DependentUpon>
+      <LastGenOutput>RafikovModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="RafikovModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RafikovModel.edmx</DependentUpon>
+      <LastGenOutput>RafikovModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

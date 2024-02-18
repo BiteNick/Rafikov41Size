@@ -10,7 +10,37 @@
       FontFamily="Comic Sans MS">
 
     <Grid>
-        <ListView Name="ProductPageView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <WrapPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                <TextBlock Name="ProductsCountCurrent"/>
+                <TextBlock Text="/"/>
+                <TextBlock Name="ProductsCount"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Введите информацию для поиска"/>
+                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" Margin="7"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Скидка" HorizontalAlignment="Center"/>
+                <ComboBox Name="DiscountCB" SelectionChanged="DiscountCB_SelectionChanged" Width="150" Margin="5" HorizontalAlignment="Center">
+                    <TextBlock>Все диапазоны</TextBlock>
+                    <TextBlock>0 - 9,99%</TextBlock>
+                    <TextBlock>10 - 14,99%</TextBlock>
+                    <TextBlock>15% и более</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="5 0 5 0">
+                <TextBlock Text="Сортировка" HorizontalAlignment="Center"/>
+                <RadioButton Name="SortRBNo" Content="Без сортировки" GroupName="Sort" Checked="SortRBNo_Checked"/>
+                <RadioButton Name="SortRB" Content="По возрастанию" GroupName="Sort" Checked="SortRB_Checked"/>
+                <RadioButton Name="SortRBDesc" Content="По убыванию" GroupName="Sort" Checked="SortRBDesc_Checked"/>
+            </StackPanel>
+        </WrapPanel>
+        <ListView Name="ProductPageView" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
