@@ -30,6 +30,7 @@ namespace Rafikov41Size
         public int ProductQuantityInStock { get; set; }
         public string ProductStatus { get; set; }
         public string ProductPhoto { get; set; }
+        public Nullable<int> Amount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderProduct> OrderProduct { get; set; }

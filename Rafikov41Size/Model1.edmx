@@ -50,6 +50,7 @@
           <Property Name="ProductQuantityInStock" Type="int" Nullable="false" />
           <Property Name="ProductStatus" Type="nvarchar(max)" />
           <Property Name="ProductPhoto" Type="nvarchar" MaxLength="200" />
+          <Property Name="Amount" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -214,6 +215,7 @@
           <Property Name="ProductQuantityInStock" Type="Int32" Nullable="false" />
           <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ProductPhoto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Int32" />
           <NavigationProperty Name="OrderProduct" Relationship="Self.FK__OrderProd__Produ__7A672E12" FromRole="Product" ToRole="OrderProduct" />
         </EntityType>
         <EntityType Name="Role">
@@ -378,6 +380,7 @@
                 <ScalarProperty Name="ProductQuantityInStock" ColumnName="ProductQuantityInStock" />
                 <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
                 <ScalarProperty Name="ProductPhoto" ColumnName="ProductPhoto" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

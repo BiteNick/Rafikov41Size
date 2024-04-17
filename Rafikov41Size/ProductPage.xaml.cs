@@ -20,10 +20,42 @@ namespace Rafikov41Size
     /// </summary>
     public partial class ProductPage : Page
     {
-        public ProductPage()
+        public static List<Product> currentProducts = new List<Product>();
+        public static List<OrderProduct> currentOrderProducts = new List<OrderProduct>();
+        private User user;
+
+        public ProductPage(User user)
         {
             InitializeComponent();
+            Authorize(user);
             ProductPageUpdate();
+        }
+
+        private void Authorize(User user)
+        {
+            if (user != null)
+            {
+                this.user = user;
+                ClientName.Text = $"{user.UserSurname} {user.UserName} {user.UserPatronymic}";
+                switch (user.UserRole)
+                {
+                    case 1:
+                        RoleName.Text = "Клиент";
+                        break;
+                    case 2:
+                        RoleName.Text = "Менеджер";
+                        break;
+                    case 3:
+                        RoleName.Text = "Администратор";
+                        break;
+                }
+            }
+            else
+            {
+                user = null;
+                ClientName.Text = "гость";
+                RoleName.Text = "Гость";
+            }
         }
 
         public void ProductPageUpdate()
@@ -60,6 +92,48 @@ namespace Rafikov41Size
 
             ProductsCountCurrent.Text = currentDBList.Count.ToString();
             ProductPageView.ItemsSource = currentDBList;
+
+            if (currentOrderProducts.Count > 0)
+            {
+                ShowOrderBtn.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ShowOrderBtn.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void AddOrder(Product product)
+        {
+            if (ProductPageView.SelectedIndex >= 0)
+            {
+                int orderProductID = Rafikov41Entities.GetContext().Order.ToList().Last().OrderID+1;
+
+                if (!currentProducts.Contains(product))
+                {
+                    product.Amount = 1;
+                    currentProducts.Add(product);
+                    var currentOrderProduct = new OrderProduct();
+                    currentOrderProduct.ProductArticleNumber = product.ProductArticleNumber;
+                    currentOrderProduct.OrderID = orderProductID;
+                    currentOrderProduct.Amount = 1;
+                    currentOrderProducts.Add(currentOrderProduct);
+                }
+                else
+                {
+                    product.Amount++;
+                    foreach (var item in currentOrderProducts)
+                    {
+                        if (item.ProductArticleNumber == product.ProductArticleNumber)
+                        {
+                            item.Amount++;
+                            break;
+                        }
+                    }
+                }
+
+                ShowOrderBtn.Visibility = Visibility.Visible;
+            }
         }
 
        
@@ -92,6 +166,17 @@ namespace Rafikov41Size
         private void DiscountCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ProductPageUpdate();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrder(ProductPageView.SelectedItem as Product);
+        }
+
+        private void ShowOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ShowOrderWindow orderWindow = new ShowOrderWindow(this, ClientName.Text, user);
+            orderWindow.Show();
         }
     }
 }

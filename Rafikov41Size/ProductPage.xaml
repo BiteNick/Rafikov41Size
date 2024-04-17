@@ -14,7 +14,18 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <WrapPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Вы авторизованы как "/>
+                    <TextBlock Name="ClientName" Text="гость"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Роль:  "/>
+                    <TextBlock Name="RoleName" Text="Гость"/>
+                </StackPanel>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
                 <TextBlock Name="ProductsCountCurrent"/>
                 <TextBlock Text="/"/>
@@ -39,8 +50,18 @@
                 <RadioButton Name="SortRB" Content="По возрастанию" GroupName="Sort" Checked="SortRB_Checked"/>
                 <RadioButton Name="SortRBDesc" Content="По убыванию" GroupName="Sort" Checked="SortRBDesc_Checked"/>
             </StackPanel>
+
+            <StackPanel VerticalAlignment="Center">
+                <Button Name="ShowOrderBtn" Content="Просмотр заказа" FontSize="16" Width="135" Click="ShowOrderBtn_Click"/>
+            </StackPanel>
+            
         </WrapPanel>
         <ListView Name="ProductPageView" Grid.Row="1">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить" Click="MenuItem_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -75,6 +96,7 @@
                         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProductCost, StringFormat={}{0} рублей}"/>
                         <TextBlock Grid.Row="1" Grid.Column="2" Text="Скидка"/>
                         <TextBlock Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" FontSize="22" Text="{Binding ProductDiscountAmount, StringFormat={}{0}%}"/>
+                        
                     </Grid>
                     
                 </DataTemplate>
